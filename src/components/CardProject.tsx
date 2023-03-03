@@ -11,7 +11,7 @@ const CardProject: React.FC = () => {
    };
 
    return (
-      <div className='card bg-slate-100 shadow-xl hover:bg-slate-50'>
+      <div className='card bg-slate-50 shadow-xl hover:bg-white cursor-pointer'>
          {edit ? (
             <form
                action=''
@@ -29,10 +29,18 @@ const CardProject: React.FC = () => {
                      className='textarea textarea-bordered'
                      placeholder='Description'
                   ></textarea>
+                  <select className='select select-bordered w-full max-w-xs'>
+                     <option disabled selected>
+                        Uncategory
+                     </option>
+                     <option>Frontend</option>
+                     <option>Backend</option>
+                     <option>Fullstack</option>
+                  </select>
                   <div className='flex gap-2'>
                      <button
                         type='submit'
-                        className='btn btn-square btn-info btn-sm'
+                        className='btn btn-square btn-success btn-sm'
                         onClick={() => setEdit(false)}
                      >
                         <AiFillSave className='text-white w-5 h-5' />
@@ -48,13 +56,15 @@ const CardProject: React.FC = () => {
             </form>
          ) : (
             <div className='card-body'>
-               <h2 className='card-title capitalize'>App chat Fiverr</h2>
+               <h2 className='card-title capitalize text-gray-700'>
+                  App chat Fiverr
+               </h2>
                <p className='my-3 text-gray-500'>
                   Membuat aplikasi chat menggunakan reactjs, express, mongoDB..
                </p>
                <div className='card-actions justify-end'>
                   <button
-                     className='btn btn-square btn-sm btn-info'
+                     className='btn btn-square btn-sm btn-success'
                      onClick={() => setEdit(!edit)}
                   >
                      <AiFillEdit className='text-white w-5 h-5' />

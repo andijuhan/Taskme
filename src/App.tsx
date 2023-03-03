@@ -1,18 +1,20 @@
 import React from 'react';
 import './App.css';
-import HomePage from './pages/HomePage';
+import AppLayout from './pages/AppLayout';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AuthPage from './pages/AuthPage';
 import NotFound from './pages/NotFound';
 import ProjectsPage from './pages/ProjectsPage';
 import Todos from './components/Todos';
 import Dashboard from './components/Dashboard';
+import HomePage from './pages/HomePage';
 
 const App: React.FC = () => {
    return (
       <Router>
          <Routes>
-            <Route path='app' element={<HomePage />}>
+            <Route path='/' element={<HomePage />} />
+            <Route path='app' element={<AppLayout />}>
                <Route index element={<Dashboard />} />
                <Route path='projects' element={<ProjectsPage />} />
                <Route path='todos' element={<Todos />} />
