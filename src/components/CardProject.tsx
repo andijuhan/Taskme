@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { AiFillEdit, AiFillDelete, AiFillSave } from 'react-icons/ai';
+import {
+   AiFillEdit,
+   AiFillDelete,
+   AiFillSave,
+   AiFillEye,
+} from 'react-icons/ai';
 import { MdOutlineCancelPresentation } from 'react-icons/md';
 
 const CardProject: React.FC = () => {
@@ -11,7 +16,7 @@ const CardProject: React.FC = () => {
    };
 
    return (
-      <div className='card bg-slate-50 shadow-xl hover:bg-white cursor-pointer'>
+      <div className='card bg-opacity-70 backdrop-blur-sm bg-slate-100 shadow-xl hover:backdrop-blur-md'>
          {edit ? (
             <form
                action=''
@@ -55,14 +60,17 @@ const CardProject: React.FC = () => {
                </div>
             </form>
          ) : (
-            <div className='card-body'>
+            <div className='card-body relative group'>
                <h2 className='card-title capitalize text-gray-700'>
                   App chat Fiverr
                </h2>
                <p className='my-3 text-gray-500'>
                   Membuat aplikasi chat menggunakan reactjs, express, mongoDB..
                </p>
-               <div className='card-actions justify-end'>
+               <div className='card-actions justify-end absolute top-3 right-3 opacity-0 group-hover:opacity-100 duration-500'>
+                  <button className='btn btn-square btn-info btn-sm'>
+                     <AiFillEye className='text-white w-5 h-5' />
+                  </button>
                   <button
                      className='btn btn-square btn-sm btn-success'
                      onClick={() => setEdit(!edit)}
@@ -72,6 +80,9 @@ const CardProject: React.FC = () => {
                   <button className='btn btn-square btn-error btn-sm'>
                      <AiFillDelete className='text-white w-5 h-5' />
                   </button>
+               </div>
+               <div>
+                  <p className='text-xs text-green-600'>Done</p>
                </div>
             </div>
          )}

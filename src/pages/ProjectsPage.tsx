@@ -1,5 +1,3 @@
-import React from 'react';
-import AddProjectForm from '../components/AddProjectForm';
 import Projects from '../components/Projects';
 
 //UI Form untuk add Project
@@ -7,8 +5,7 @@ import Projects from '../components/Projects';
 //Management Project (CRUD)
 const ProjectsPage = () => {
    return (
-      <div className='flex flex-col space-y-10 h-full'>
-         <AddProjectForm />
+      <div className='flex flex-col h-full'>
          <Projects />
       </div>
    );
