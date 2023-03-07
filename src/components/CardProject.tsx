@@ -6,8 +6,17 @@ import {
    AiFillEye,
 } from 'react-icons/ai';
 import { MdOutlineCancelPresentation } from 'react-icons/md';
+import { IProject } from '../types/props';
 
-const CardProject: React.FC = () => {
+interface Props {
+   project: IProject;
+}
+
+const CardProject = ({ project }: Props) => {
+   const title = project.title || '';
+   const description = project.description || '';
+   const deadlineDate = project.deadlinedate || '';
+
    const [edit, setEdit] = useState<boolean>(false);
 
    const editProjectHandle = (e: React.FormEvent<HTMLFormElement>) => {
@@ -16,7 +25,7 @@ const CardProject: React.FC = () => {
    };
 
    return (
-      <div className='card bg-opacity-70 backdrop-blur-sm bg-slate-100 shadow-xl hover:backdrop-blur-md'>
+      <div className='card bg-opacity-70 backdrop-blur-sm bg-slate-50 shadow-xl hover:backdrop-blur-md'>
          {edit ? (
             <form
                action=''
@@ -27,12 +36,12 @@ const CardProject: React.FC = () => {
                <div className='form-control w-full max-w-xl gap-3 p-4'>
                   <input
                      type='text'
-                     placeholder='Project Title'
+                     value={title}
                      className='input input-bordered w-full max-w-xl'
                   />
                   <textarea
                      className='textarea textarea-bordered'
-                     placeholder='Description'
+                     value={description}
                   ></textarea>
                   <select className='select select-bordered w-full max-w-xs'>
                      <option disabled selected>
@@ -61,13 +70,9 @@ const CardProject: React.FC = () => {
             </form>
          ) : (
             <div className='card-body relative group'>
-               <h2 className='card-title capitalize text-gray-700'>
-                  App chat Fiverr
-               </h2>
-               <p className='my-3 text-gray-500'>
-                  Membuat aplikasi chat menggunakan reactjs, express, mongoDB..
-               </p>
-               <div className='card-actions justify-end absolute top-3 right-3 opacity-0 group-hover:opacity-100 duration-500'>
+               <h2 className='card-title capitalize text-gray-700'>{title}</h2>
+               <p className='my-3 text-gray-500'>{description}</p>
+               <div className='card-actions justify-end absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 duration-500'>
                   <button className='btn btn-square btn-info btn-sm'>
                      <AiFillEye className='text-white w-5 h-5' />
                   </button>

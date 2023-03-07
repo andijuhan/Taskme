@@ -1,19 +1,38 @@
 import React, { useState } from 'react';
 import { AiFillFileAdd } from 'react-icons/ai';
+import { supabase } from '../SupabaseClient';
 
-const AddProjectForm: React.FC = () => {
+interface Props {
+   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+   getProjects: () => Promise<void>;
+}
+
+const AddProjectForm = ({ setIsOpen, getProjects }: Props) => {
    const [projectTitle, setProjectTitle] = useState<string>('');
    const [projectDesc, setProjectDesc] = useState<string>('');
 
-   const addProjectHandle = (e: React.FormEvent<HTMLFormElement>) => {
+   const addProjectHandle = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       //simpan ke database
-      console.log('simpan ke database');
+
+      try {
+         const { error } = await supabase
+            .from('projects')
+            .insert({ title: projectTitle, description: projectDesc })
+            .single();
+         if (error) throw error;
+         //update list project
+         getProjects();
+         //tutup modal
+         setIsOpen(false);
+      } catch (error: any) {
+         console.log('Ups..', error.message);
+      }
    };
 
    return (
-      <div className='flex gap-3 items-start'>
-         <div className='w-[600px] bg-white text-gray-800 px-10 py-10 rounded-xl bg-opacity-80'>
+      <div className='flex gap-3 items-start w-full'>
+         <div className='w-[600px] bg-white text-gray-800 px-10 rounded-xl'>
             <form action='' onSubmit={(e) => addProjectHandle(e)}>
                <h1 className='text-xl font-bold mb-5'>Add New Project</h1>
                <div className='form-control w-full'>
@@ -71,7 +90,7 @@ const AddProjectForm: React.FC = () => {
                      type='date'
                      className='input input-bordered w-full max-w-xs'
                   />
-                  <button type='submit' className='btn btn-primary gap-2 mt-5'>
+                  <button type='submit' className='btn btn-primary gap-2 my-5'>
                      <AiFillFileAdd className='h-6 w-6' />
                      Add Project
                   </button>

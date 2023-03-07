@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import AppLayout from './pages/AppLayout';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';

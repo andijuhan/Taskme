@@ -1,8 +1,15 @@
 import React from 'react';
+import { IProject } from '../types/props';
 import CardProject from './CardProject';
 import SearchProjects from './SearchProjects';
 
-const Projects: React.FC = () => {
+interface Props {
+   projects: IProject[];
+}
+
+const Projects = ({ projects }: Props) => {
+   console.log(projects);
+
    return (
       <div className='container bg-white bg-opacity-60 rounded-xl px-10 py-10'>
          <SearchProjects />
@@ -10,12 +17,9 @@ const Projects: React.FC = () => {
             My Projects
          </h1>
          <div className='grid grid-cols-4 items-start gap-3'>
-            <CardProject />
-            <CardProject />
-            <CardProject />
-            <CardProject />
-            <CardProject />
-            <CardProject />
+            {projects.map((project) => (
+               <CardProject key={project.id} project={project} />
+            ))}
          </div>
          <div className='mt-5 flex justify-center'>
             <div className='btn-group'>
