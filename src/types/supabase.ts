@@ -11,18 +11,21 @@ export interface Database {
       Tables: {
          projects: {
             Row: {
+               dateAdded: string;
                deadlinedate: string | null;
                description: string | null;
                id: number;
                title: string | null;
             };
             Insert: {
+               dateAdded?: string;
                deadlinedate?: string | null;
                description?: string | null;
                id?: number;
                title?: string | null;
             };
             Update: {
+               dateAdded?: string;
                deadlinedate?: string | null;
                description?: string | null;
                id?: number;

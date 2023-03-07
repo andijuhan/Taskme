@@ -7,6 +7,7 @@ import ProjectsPage from './pages/ProjectsPage';
 import Todos from './components/Todos';
 import Dashboard from './components/Dashboard';
 import HomePage from './pages/HomePage';
+import ProjectDetails from './pages/ProjectDetails';
 
 const App: React.FC = () => {
    return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
             <Route path='app' element={<AppLayout />}>
                <Route index element={<Dashboard />} />
                <Route path='projects' element={<ProjectsPage />} />
+               <Route path='projects/:projectId' element={<ProjectDetails />} />
                <Route path='todos' element={<Todos />} />
             </Route>
             <Route path='/auth' element={<AuthPage />} />

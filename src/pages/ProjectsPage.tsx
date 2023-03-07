@@ -4,7 +4,7 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import Modal from '../components/Modal';
 import AddProjectForm from '../components/AddProjectForm';
 import { supabase } from '../SupabaseClient';
-import { IProject } from '../types/props';
+import { IProject } from '../types/model';
 
 //UI Form untuk add Project
 //Menampilkan list Project
@@ -18,6 +18,7 @@ const defaultValue: IProject = {
 
 const ProjectsPage = () => {
    const [isOpen, setIsOpen] = useState<boolean>(false);
+   const [loading, setLoading] = useState<boolean>(true);
    const [projects, setProjects] = useState<IProject[]>([defaultValue]);
 
    useEffect(() => {
@@ -31,13 +32,16 @@ const ProjectsPage = () => {
          const { data, error } = await supabase
             .from('projects')
             .select('*')
-            .limit(10);
+            .limit(10)
+            .order('dateAdded', { ascending: false });
          if (error) throw error;
          if (data !== null) {
             setProjects(data);
          }
       } catch (error: any) {
          console.log('Ups..', error.message);
+      } finally {
+         setLoading(false);
       }
    };
 
@@ -63,7 +67,11 @@ const ProjectsPage = () => {
                />
             </Modal>
          )}
-         <Projects projects={projects} />
+         <Projects
+            projects={projects}
+            getProjects={getProjects}
+            loading={loading}
+         />
       </div>
    );
 };

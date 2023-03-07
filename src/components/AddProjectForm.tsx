@@ -14,7 +14,6 @@ const AddProjectForm = ({ setIsOpen, getProjects }: Props) => {
    const addProjectHandle = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       //simpan ke database
-
       try {
          const { error } = await supabase
             .from('projects')
@@ -23,8 +22,6 @@ const AddProjectForm = ({ setIsOpen, getProjects }: Props) => {
          if (error) throw error;
          //update list project
          getProjects();
-         //tutup modal
-         setIsOpen(false);
       } catch (error: any) {
          console.log('Ups..', error.message);
       }
@@ -33,7 +30,13 @@ const AddProjectForm = ({ setIsOpen, getProjects }: Props) => {
    return (
       <div className='flex gap-3 items-start w-full'>
          <div className='w-[600px] bg-white text-gray-800 px-10 rounded-xl'>
-            <form action='' onSubmit={(e) => addProjectHandle(e)}>
+            <form
+               action=''
+               onSubmit={(e) => {
+                  addProjectHandle(e);
+                  setIsOpen(false);
+               }}
+            >
                <h1 className='text-xl font-bold mb-5'>Add New Project</h1>
                <div className='form-control w-full'>
                   <label className='label'>
@@ -45,6 +48,7 @@ const AddProjectForm = ({ setIsOpen, getProjects }: Props) => {
                      className='input input-bordered w-full max-w-xl'
                      onChange={(e) => setProjectTitle(e.target.value)}
                      value={projectTitle}
+                     required
                   />
                   <label className='label'>
                      <span className='label-text'>Project Description</span>
@@ -54,6 +58,7 @@ const AddProjectForm = ({ setIsOpen, getProjects }: Props) => {
                      placeholder='CRM App with ReactJs, Express, MongoDB'
                      onChange={(e) => setProjectDesc(e.target.value)}
                      value={projectDesc}
+                     required
                   ></textarea>
                   <label className='label'>
                      <span className='label-text'>Project Category</span>

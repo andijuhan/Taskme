@@ -24,7 +24,7 @@ const Sidebar = () => {
             <Link to='/app/projects'>
                <div
                   className={`flex items-center space-x-4 hover:bg-black hover:bg-opacity-50 ${
-                     pathName === '/app/projects'
+                     pathName.includes('/app/projects')
                         ? 'bg-black bg-opacity-50'
                         : ''
                   } px-7 py-4 cursor-pointer duration-300`}
