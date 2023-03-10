@@ -36,6 +36,8 @@ const ProjectsPage = () => {
             .order('dateAdded', { ascending: false });
          if (error) throw error;
          if (data !== null) {
+            console.log(data);
+
             setProjects(data);
          }
       } catch (error: any) {

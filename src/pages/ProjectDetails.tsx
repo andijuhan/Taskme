@@ -1,38 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskManagement from '../components/TaskManagement';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { TaskItemModel } from '../types/model';
-
-const DUMMY_DATA_1: TaskItemModel[] = [
-   {
-      id: 1,
-      title: 'Title 1',
-   },
-   {
-      id: 2,
-      title: 'Title 2',
-   },
-   {
-      id: 3,
-      title: 'Title 3',
-   },
-   {
-      id: 4,
-      title: 'Title 4',
-   },
-];
+import { supabase } from '../SupabaseClient';
 
 const ProjectDetails = () => {
-   const [taskTodos, setTaskTodo] = useState<TaskItemModel[]>(DUMMY_DATA_1);
+   const [taskTodos, setTaskTodo] = useState<TaskItemModel[]>([]);
    const [taskProgress, setTaskProgress] = useState<TaskItemModel[]>([]);
    const [taskDone, setTaskDone] = useState<TaskItemModel[]>([]);
 
-   console.log(taskTodos);
-   console.log(taskProgress);
+   useEffect(() => {
+      getTaskItem();
+   }, []);
+
+   const getTaskItem = async () => {
+      try {
+         const { data, error } = await supabase
+            .from('taskItems')
+            .select('*')
+            .limit(10)
+            .order('created_at', { ascending: true });
+         if (error) throw error;
+         if (data !== null) {
+            const todos = data.filter((todo) => todo.taskId === 1);
+            const inProgress = data.filter((progress) => progress.taskId === 2);
+            const done = data.filter((don) => don.taskId === 3);
+            setTaskTodo(todos);
+            setTaskProgress(inProgress);
+            setTaskDone(done);
+         }
+      } catch (error: any) {
+         console.log('Ups..', error.message);
+      } finally {
+      }
+   };
 
    const onDragEnd = (result: DropResult) => {
-      console.log(result);
-
       const { source, destination } = result;
       //jika tujuan drag kosong
       if (!destination) return;
@@ -74,6 +77,10 @@ const ProjectDetails = () => {
       setTaskDone(done);
       setTaskProgress(progress);
       setTaskTodo(todos);
+      console.log(todos);
+
+      //update taskId di database
+      //buat function untuk update taskId
    };
    return (
       <DragDropContext onDragEnd={onDragEnd}>

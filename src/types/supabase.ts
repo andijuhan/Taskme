@@ -32,6 +32,43 @@ export interface Database {
                title?: string | null;
             };
          };
+         task: {
+            Row: {
+               created_at: string | null;
+               id: number;
+               title: string | null;
+            };
+            Insert: {
+               created_at?: string | null;
+               id?: number;
+               title?: string | null;
+            };
+            Update: {
+               created_at?: string | null;
+               id?: number;
+               title?: string | null;
+            };
+         };
+         taskItems: {
+            Row: {
+               created_at: string | null;
+               id: number;
+               taskId: number | null;
+               title: string | null;
+            };
+            Insert: {
+               created_at?: string | null;
+               id?: number;
+               taskId?: number | null;
+               title?: string | null;
+            };
+            Update: {
+               created_at?: string | null;
+               id?: number;
+               taskId?: number | null;
+               title?: string | null;
+            };
+         };
       };
       Views: {
          [_ in never]: never;

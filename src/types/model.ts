@@ -7,5 +7,6 @@ export interface IProject {
 
 export interface TaskItemModel {
    id: number;
-   title: string;
+   title: string | null;
+   taskId: number | null;
 }
