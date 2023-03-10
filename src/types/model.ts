@@ -4,3 +4,8 @@ export interface IProject {
    id: number;
    title: string | null;
 }
+
+export interface TaskItemModel {
+   id: number;
+   title: string;
+}

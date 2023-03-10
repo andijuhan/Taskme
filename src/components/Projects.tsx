@@ -12,10 +12,8 @@ interface Props {
 }
 
 const Projects = ({ projects, getProjects, loading }: Props) => {
-   console.log(projects);
-
    return (
-      <div className='container bg-white bg-opacity-70 rounded-xl px-10 py-10'>
+      <div className='container bg-white bg-opacity-70 rounded-xl p-10'>
          <SearchProjects />
          <h1 className='text-xl text-gray-800 font-bold mb-5 mt-5'>
             My Projects

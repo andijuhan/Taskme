@@ -6,7 +6,6 @@ import { Link, useLocation } from 'react-router-dom';
 const Sidebar = () => {
    const location = useLocation();
    const pathName = location.pathname;
-   console.log(location.pathname);
 
    return (
       <div className='w-[300px] min-full shadow-xl bg-white bg-opacity-10 backdrop-blur-sm text-white py-10'>

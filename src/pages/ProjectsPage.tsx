@@ -54,19 +54,14 @@ const ProjectsPage = () => {
             <AiOutlinePlus className='w-5 h-5' />
             Add Project
          </button>
-         {isOpen && (
-            <Modal
-               isOpen={isOpen}
-               closeModal={() => {
-                  setIsOpen(false);
-               }}
-            >
-               <AddProjectForm
-                  setIsOpen={setIsOpen}
-                  getProjects={getProjects}
-               />
-            </Modal>
-         )}
+         <Modal
+            isOpen={isOpen}
+            closeModal={() => {
+               setIsOpen(false);
+            }}
+         >
+            <AddProjectForm setIsOpen={setIsOpen} getProjects={getProjects} />
+         </Modal>
          <Projects
             projects={projects}
             getProjects={getProjects}

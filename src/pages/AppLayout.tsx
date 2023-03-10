@@ -11,7 +11,7 @@ const AppLayout: React.FC = () => {
    return (
       <>
          <div
-            className='w-full min-h-screen bg-cover bg-center bg-fixed'
+            className='w-full min-h-screen bg-fixed'
             style={{
                backgroundImage: `url(${imgBackground})`,
             }}
