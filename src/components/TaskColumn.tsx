@@ -33,7 +33,7 @@ const TaskColumn = ({ taskItems, taskTitle, taskId }: Props) => {
                         key={taskItem.id}
                         index={index}
                         id={taskItem.id}
-                        title={taskItem.title}
+                        title={taskItem.title || ''}
                      />
                   ))}
                   {provided.placeholder}
