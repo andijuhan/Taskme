@@ -1,27 +1,14 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import Sidebar from '../components/Sidebar';
 
 const AppLayout: React.FC = () => {
-   const [imgBackground, setImgBackground] = useState<string>(
-      'https://res.cloudinary.com/djlpcw7uf/image/upload/v1677829292/TaskMe/pexels-andy-vu-3244513_qyq5wk.jpg'
-   );
-
    return (
       <>
-         <div
-            className='w-full min-h-screen bg-fixed'
-            style={{
-               backgroundImage: `url(${imgBackground})`,
-            }}
-         >
+         <div className='w-full min-h-screen bg-fixed bg-zinc-900'>
             <Navbar />
-            <div className='flex min-h-screen'>
-               <Sidebar />
-               <div className='w-full px-10 py-10'>
-                  <Outlet />
-               </div>
+            <div className='flex w-full min-h-screen'>
+               <Outlet />
             </div>
          </div>
       </>

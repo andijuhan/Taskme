@@ -36,16 +36,22 @@ export interface Database {
             Row: {
                created_at: string | null;
                id: number;
+               index: number | null;
+               projectId: number | null;
                title: string | null;
             };
             Insert: {
                created_at?: string | null;
                id?: number;
+               index?: number | null;
+               projectId?: number | null;
                title?: string | null;
             };
             Update: {
                created_at?: string | null;
                id?: number;
+               index?: number | null;
+               projectId?: number | null;
                title?: string | null;
             };
          };
@@ -53,18 +59,24 @@ export interface Database {
             Row: {
                created_at: string | null;
                id: number;
+               index: number;
+               projectId: number | null;
                taskId: number | null;
                title: string | null;
             };
             Insert: {
                created_at?: string | null;
                id?: number;
+               index?: number | null;
+               projectId?: number | null;
                taskId?: number | null;
                title?: string | null;
             };
             Update: {
                created_at?: string | null;
                id?: number;
+               index?: number | null;
+               projectId?: number | null;
                taskId?: number | null;
                title?: string | null;
             };

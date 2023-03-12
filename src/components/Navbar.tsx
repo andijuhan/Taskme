@@ -1,15 +1,14 @@
 import React from 'react';
+import { HiOutlineArrowLeftOnRectangle } from 'react-icons/hi2';
 
 const Navbar = () => {
    return (
-      <div className='navbar bg-black text-neutral-content shadow-lg bg-opacity-60'>
+      <div className='py-2 bg-zinc-900 border-b text-white border-zinc-800'>
          <div className='flex w-full justify-between'>
-            <h1 className='text-white font-bold ml-5 text-xl'>TASKMe.</h1>
-            <div className='avatar online placeholder mr-2 cursor-pointer'>
-               <div className='bg-indigo-500 text-neutral-content rounded-full w-10'>
-                  <span className='text-xl'>JD</span>
-               </div>
-            </div>
+            <h1 className='font-bold ml-5 text-xl'>Kanban</h1>
+            <button className='mr-5'>
+               <HiOutlineArrowLeftOnRectangle className='text-zinc-300 w-7 h-7' />
+            </button>
          </div>
       </div>
    );

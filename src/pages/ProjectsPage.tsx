@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Projects from '../components/Projects';
-import { AiOutlinePlus } from 'react-icons/ai';
-import Modal from '../components/Modal';
-import AddProjectForm from '../components/AddProjectForm';
 import { supabase } from '../SupabaseClient';
 import { IProject } from '../types/model';
+import Sidebar from '../components/Sidebar';
+import TaskBoard from '../components/TaskBoard';
 
 //UI Form untuk add Project
 //Menampilkan list Project
@@ -17,7 +15,6 @@ const defaultValue: IProject = {
 };
 
 const ProjectsPage = () => {
-   const [isOpen, setIsOpen] = useState<boolean>(false);
    const [loading, setLoading] = useState<boolean>(true);
    const [projects, setProjects] = useState<IProject[]>([defaultValue]);
 
@@ -25,15 +22,12 @@ const ProjectsPage = () => {
       getProjects();
    }, []);
 
-   console.log(projects);
-
    const getProjects = async () => {
       try {
          const { data, error } = await supabase
             .from('projects')
             .select('*')
-            .limit(10)
-            .order('dateAdded', { ascending: false });
+            .limit(10);
          if (error) throw error;
          if (data !== null) {
             console.log(data);
@@ -48,27 +42,9 @@ const ProjectsPage = () => {
    };
 
    return (
-      <div className='flex flex-col h-full'>
-         <button
-            className='btn btn-primary w-[200px] gap-2 mb-10'
-            onClick={() => setIsOpen(!isOpen)}
-         >
-            <AiOutlinePlus className='w-5 h-5' />
-            Add Project
-         </button>
-         <Modal
-            isOpen={isOpen}
-            closeModal={() => {
-               setIsOpen(false);
-            }}
-         >
-            <AddProjectForm setIsOpen={setIsOpen} getProjects={getProjects} />
-         </Modal>
-         <Projects
-            projects={projects}
-            getProjects={getProjects}
-            loading={loading}
-         />
+      <div className='flex h-full'>
+         <Sidebar projects={projects} />
+         <TaskBoard projects={projects} />
       </div>
    );
 };
