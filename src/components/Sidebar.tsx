@@ -20,21 +20,21 @@ const Sidebar = ({ projects }: Props) => {
          <input
             type='text'
             placeholder='New project'
-            className='input input-sm w-full max-w-xs bg-zinc-600 text-zinc-300 mb-2 mt-5'
+            className='input input-sm w-full max-w-xs bg-zinc-600 text-zinc-200 mb-2 mt-5'
          />
-         <button className='px-2 py-1 rounded-lg text-zinc-100 font-medium text-sm bg-blue-600 hover:bg-blue-700 mb-6'>
+         <button className='px-2 py-1 rounded-lg text-zinc-100 text-sm bg-blue-700 hover:bg-blue-600 mb-6'>
             Add
          </button>
          <p className='bg-zinc-800 rounded-full p-1 font-medium mb-3 text-zinc-200'>
             📌 Projects
          </p>
-         <ul className='space-y-3 ml-2 mb-2'>
+         <ul className='space-y-3 ml-2 mb-2 text-zinc-500'>
             {projects.map((project) => (
                <li
                   key={project.id}
-                  className={`text-sm font-medium bg-zinc-800 ${
+                  className={`text-sm font-medium  ${
                      pathName.includes(project.id.toString()) && 'text-zinc-300'
-                  } rounded-full p-1 hover:text-zinc-200`}
+                  } hover:text-zinc-200`}
                >
                   <Link to={`/app/kanban/${project.id}`}>
                      <div className='flex items-center'>

@@ -88,7 +88,7 @@ const TaskBoard = ({ projects }: Props) => {
    };
 
    return (
-      <div className='px-10 py-5 text-zinc-400'>
+      <div className='px-10 py-5 text-zinc-300'>
          {!projectId && <Welcome />}
          {projectId && projectById && (
             <>
@@ -100,17 +100,23 @@ const TaskBoard = ({ projects }: Props) => {
                   </div>
                </div>
                <div className='flex gap-4'>
-                  {taskBoards.map((taskBoard) => {
+                  {taskBoards.map((taskBoard, index) => {
+                     let color = 'bg-red-500';
+                     if (index === 1) color = 'bg-yellow-500';
+                     if (index === 2) color = 'bg-green-500';
+
                      let taskItem: ITaskItem[] = [];
                      if (taskBoard.title === 'Todo') taskItem = todos;
                      if (taskBoard.title === 'In Progress')
                         taskItem = inProgress;
                      if (taskBoard.title === 'Done') taskItem = done;
+
                      return (
                         <TaskBoardItem
                            key={taskBoard.id}
                            title={taskBoard.title}
                            taskItems={taskItem}
+                           color={color}
                         />
                      );
                   })}
