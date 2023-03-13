@@ -4,8 +4,8 @@ const welcome = () => {
    return (
       <div className='w-[600px] bg-zinc-800 p-5 rounded-lg text-zinc-300'>
          <h1 className='text-xl font-bold mb-3'>Welcome username</h1>
-         <div className='font mb-7'>
-            <p>Simple Kanban Board for your project</p>
+         <div className='mb-7'>
+            <p>Simple Kanban Board for your project.</p>
             <p>
                Create and manage project with Kanban system to increased
                productivity.{' '}

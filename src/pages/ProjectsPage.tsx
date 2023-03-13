@@ -10,8 +10,6 @@ import TaskBoard from '../components/TaskBoard';
 const defaultValue: IProject = {
    id: 0,
    title: '',
-   description: '',
-   deadlinedate: '',
 };
 
 const ProjectsPage = () => {
@@ -30,8 +28,6 @@ const ProjectsPage = () => {
             .limit(10);
          if (error) throw error;
          if (data !== null) {
-            console.log(data);
-
             setProjects(data);
          }
       } catch (error: any) {

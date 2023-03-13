@@ -1,23 +1,19 @@
 export interface IProject {
-   deadlinedate: string | null;
-   description: string | null;
    id: number;
-   title: string | null;
+   title: string;
 }
 
-export interface TaskItemModel {
-   created_at: string | null;
+export interface ITaskBoard {
+   created_at: string;
    id: number;
    index: number;
-   projectId: number | null;
-   taskId: number | null;
-   title: string | null;
+   title: string;
 }
 
-export interface TaskModel {
-   created_at: string | null;
+export interface ITaskItem {
+   created_at: string;
    id: number;
-   index: number | null;
-   projectId: number | null;
-   title: string | null;
+   index: number;
+   taskBoardId: number;
+   title: string;
 }

@@ -32,11 +32,18 @@ const Sidebar = ({ projects }: Props) => {
             {projects.map((project) => (
                <li
                   key={project.id}
-                  className='text-sm font-medium bg-zinc-800 rounded-full p-1 hover:text-zinc-200'
+                  className={`text-sm font-medium bg-zinc-800 ${
+                     pathName.includes(project.id.toString()) && 'text-zinc-300'
+                  } rounded-full p-1 hover:text-zinc-200`}
                >
                   <Link to={`/app/kanban/${project.id}`}>
                      <div className='flex items-center'>
-                        <BsFillCaretRightFill />
+                        <BsFillCaretRightFill
+                           className={`${
+                              pathName.includes(project.id.toString()) &&
+                              'text-zinc-200'
+                           }`}
+                        />
                         <span className='line-clamp-1 lowercase'>
                            {project.title}
                         </span>

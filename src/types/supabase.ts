@@ -11,74 +11,65 @@ export interface Database {
       Tables: {
          projects: {
             Row: {
-               dateAdded: string;
-               deadlinedate: string | null;
-               description: string | null;
                id: number;
-               title: string | null;
+               title: string;
             };
             Insert: {
-               dateAdded?: string;
-               deadlinedate?: string | null;
-               description?: string | null;
                id?: number;
-               title?: string | null;
+               title: string;
             };
             Update: {
-               dateAdded?: string;
-               deadlinedate?: string | null;
-               description?: string | null;
                id?: number;
-               title?: string | null;
+               title?: string;
             };
          };
-         task: {
+         taskBoard: {
             Row: {
-               created_at: string | null;
+               created_at: string;
                id: number;
-               index: number | null;
-               projectId: number | null;
-               title: string | null;
+               index: number;
+               projectId: number;
+               title: string;
             };
             Insert: {
-               created_at?: string | null;
+               created_at?: string;
                id?: number;
-               index?: number | null;
-               projectId?: number | null;
-               title?: string | null;
+               index: number;
+               projectId: number;
+               title: string;
             };
             Update: {
-               created_at?: string | null;
+               created_at?: string;
                id?: number;
-               index?: number | null;
-               projectId?: number | null;
-               title?: string | null;
+               index?: number;
+               projectId?: number;
+               title?: string;
             };
          };
          taskItems: {
             Row: {
-               created_at: string | null;
+               created_at: string;
                id: number;
                index: number;
                projectId: number | null;
-               taskId: number | null;
-               title: string | null;
+               taskBoardId: number;
+               title: string;
             };
             Insert: {
-               created_at?: string | null;
+               created_at?: string;
                id?: number;
-               index?: number | null;
+               index?: number;
                projectId?: number | null;
-               taskId?: number | null;
-               title?: string | null;
+               taskBoardId: number;
+               title: string;
             };
             Update: {
-               created_at?: string | null;
+               created_at?: string;
                id?: number;
-               index?: number | null;
+               index?: number;
                projectId?: number | null;
-               taskId?: number | null;
-               title?: string | null;
+               taskBoardId?: number;
+               title?: string;
             };
          };
       };
